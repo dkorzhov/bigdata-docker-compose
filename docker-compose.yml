@@ -191,6 +191,28 @@ services:
       - "worker2:172.28.1.3"
       - "hivemetastore:172.28.1.4"
       - "zeppelin:172.28.1.5"
+  flume:
+    tty: true
+    build: './flume'
+    hostname: flume
+    depends_on:
+      - master
+    volumes:
+      - ./data:/data
+    environment:
+      HADOOP_NODE: none
+    expose:
+      - 1-65535
+    networks:
+      spark_net:
+        ipv4_address: 172.28.1.7
+    extra_hosts:
+      - "master:172.28.1.1"
+      - "worker1:172.28.1.2"
+      - "worker2:172.28.1.3"
+      - "hivemetastore:172.28.1.4"
+      - "zeppelin:172.28.1.5"
+      - "livy:172.28.1.6"
 
 networks:
   spark_net:
