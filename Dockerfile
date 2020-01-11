@@ -68,9 +68,10 @@ RUN curl --progress-bar -L \
     --output "${SPARK_HOME}/jars/spark-hive_${SCALA_VERSION}-${SPARK_VERSION}.jar"
 
 # PySpark - comment out if you don't want it in order to save image space
-RUN apk add --no-cache \
-    python3=3.7.4-r0 \
-    python3-dev=3.7.4-r0 \
+RUN apk update \
+ && apk add --no-cache \
+    python3=3.7.5-r1 \
+    python3-dev=3.7.5-r1 \
  && ln -s /usr/bin/python3 /usr/bin/python
 
 # SparkR - comment out if you don't want it in order to save image space
